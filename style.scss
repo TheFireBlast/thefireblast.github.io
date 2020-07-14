@@ -48,22 +48,14 @@ body {
     position: absolute;
     right: 10px;
     bottom: 10px;
-    @media screen and (max-width: 630px) {
-        a {
-            display: block;
-            margin-top: 5px;
-        }
-    }
+    transition: all ease-out 0.5s;
     img {
         width: 32px;
         margin-left: 5px;
-        transition: .3s filter ease-out;
-        @media screen and (max-width: 630px) {
-            width: 50px;
-        }
-        &:hover {
-            filter: drop-shadow(0px 0px 2px #aaa);
-        }
+        transition: 0.3s filter ease-out;
+    }
+    > a:hover img {
+        filter: drop-shadow(0px 0px 2px #aaa);
     }
     > a {
         position: relative;
@@ -80,18 +72,50 @@ body {
         border-radius: 2px;
         opacity: 0;
         transition: 0.2s opacity ease;
-        right: 5px;
+        left: 16px;
+        transform: translate(-50%, 0);
         bottom: 50px;
+        pointer-events: none;
         &::after {
             background: #080808;
-            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
             content: '';
             display: block;
             height: 10px;
-            right: 11px;
             position: absolute;
+            left: 50%;
             bottom: -10px;
             width: 10px;
+        }
+    }
+    @media screen and (max-width: 630px) {
+        bottom: 100px;
+        a {
+            display: block;
+            margin-top: 10px;
+        }
+        .tooltip {
+            right: 48px;
+            bottom: 6px;
+            transform: none;
+            left: initial;
+        }
+        .tooltip::after {
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            right: -10px;
+            bottom: 9px;
+            left: initial;
+        }
+    }
+    @media screen and (min-width: 630px) {
+        a.discord .tooltip {
+            right: 0;
+            transform: none;
+            left: initial;
+        }
+        a.discord .tooltip::after {
+            left: initial;
+            right: 16px;
         }
     }
 }
