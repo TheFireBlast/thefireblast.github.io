@@ -1,1 +1,3 @@
-# thefireblast.github.io
+https://thefireblast.github.io
+
+https://fireblast.js.org

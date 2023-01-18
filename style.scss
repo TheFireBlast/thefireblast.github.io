@@ -1,9 +1,6 @@
----
----
-
 body {
     background-color: #212121;
-    font-family: Roboto, 'Open Sans', sans-serif;
+    font-family: Roboto, "Open Sans", sans-serif;
     color: #eee;
     margin: 0;
     padding-bottom: 50px;
@@ -17,20 +14,21 @@ body {
     box-shadow: 0 0 5px #000;
     position: relative;
 
-    span {
+    > span {
         font-size: 1.8em;
         display: block;
-        margin-top: 5px;
+        margin-top: 16px;
     }
-    p {
+    > p {
         color: #999;
-        margin: 6px;
+        margin: 8px;
     }
     > img {
         background: #171717;
         border: 2px solid #59b0ff;
         transition: 0.5s box-shadow ease;
         animation: myanim 0.8s ease-out forwards;
+        box-shadow: 0 0 8px #59b0ff00;
         @keyframes myanim {
             0% {
                 border-radius: 0%;
@@ -39,9 +37,9 @@ body {
                 border-radius: 50%;
             }
         }
-    }
-    > img:hover {
-        box-shadow: 0 0 5px #59b0ff;
+        &:hover {
+            box-shadow: 0 0 8px #59b0ff;
+        }
     }
 }
 #social {
@@ -49,18 +47,22 @@ body {
     right: 10px;
     bottom: 10px;
     transition: all ease-out 0.5s;
-    img {
+    svg {
         width: 32px;
-        margin-left: 5px;
         transition: 0.3s filter ease-out;
+        fill: #fff;
     }
-    > a:hover img {
-        filter: drop-shadow(0px 0px 2px #aaa);
+    > a:hover svg {
+        filter: drop-shadow(0px 0px 3px #aaa);
     }
     > a {
+        display: inline-block;
         position: relative;
         text-decoration: none;
         color: #fff !important;
+        margin: 10px;
+        width: 32px;
+        height: 32px;
     }
     > a:hover .tooltip:not(:hover) {
         opacity: 1;
@@ -79,7 +81,7 @@ body {
         &::after {
             background: #080808;
             clip-path: polygon(0 0, 100% 0, 50% 100%);
-            content: '';
+            content: "";
             display: block;
             height: 10px;
             position: absolute;
@@ -88,11 +90,11 @@ body {
             width: 10px;
         }
     }
+
     @media screen and (max-width: 630px) {
         bottom: 100px;
         a {
             display: block;
-            margin-top: 10px;
         }
         .tooltip {
             right: 48px;
@@ -107,6 +109,7 @@ body {
             left: initial;
         }
     }
+
     @media screen and (min-width: 630px) {
         a.discord .tooltip {
             right: 0;
@@ -121,8 +124,9 @@ body {
 }
 
 #page {
-    max-width: 900px;
-    margin: 0 auto;
+    // max-width: 900px;
+    // margin: 0 auto;
+    margin: 0 30px;
 }
 h2 {
     width: min-content;
@@ -130,26 +134,30 @@ h2 {
 }
 
 #projects {
-    display: grid;
-    grid-template-columns: auto auto;
-    @media screen and (max-width: 630px) {
-        grid-template-columns: auto;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
 
     > div {
         display: flex;
         flex-direction: column;
+        flex: 1 1 200px;
+        max-width: 300px;
+        min-width: 200px;
         background: #181818;
-        width: 300px;
         min-height: 400px;
-        border-radius: 3px;
-        margin: 5px auto;
-        padding: 10px;
+        border-radius: 5px;
+        // margin: 5px auto;
+        padding: 12px;
+        padding-bottom: 18px;
         box-sizing: border-box;
-        transition: 0.3s box-shadow ease;
-        box-shadow: inset 0 -10px 0px -8px #59b0ff;
+        transition: 0.5s box-shadow ease;
+        box-shadow: 0px 0px 10px #0002, inset 0 -23px 0px -20px #59b0ff,
+            inset 0 -28px 10px -25px #59b0ff00;
         &:hover {
-            box-shadow: inset 0 -10px 0px -8px #59b0ff, inset 0 -20px 10px -20px #59b0ff;
+            box-shadow: 0px 0px 10px #0002, inset 0 -23px 0px -20px #59b0ff,
+                inset 0 -28px 10px -25px #59b0ff;
         }
         h3 {
             text-align: center;
@@ -164,24 +172,35 @@ h2 {
         }
         .links {
             margin-top: auto;
-            display: grid;
-            grid-template-columns: auto auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
             a {
+                flex: 1;
+                white-space: nowrap;
                 user-select: none;
                 background: #3e8bb9;
-                padding: 5px;
+                padding: 6px 12px;
                 color: #fff;
                 text-decoration: none;
                 display: block;
-                width: 120px;
-                margin: 5px auto;
                 border-radius: 2px;
                 text-align: center;
-                &:not([disabled]):hover {
-                    background: #2d6586;
+                transition: 0.2s box-shadow ease;
+                box-shadow: inset 0 -18px 0px -20px #59b0ff;
+
+                svg {
+                    height: 1em;
+                    vertical-align: text-bottom;
                 }
-                &:not([disabled]):active {
-                    background: #1f475e;
+
+                &:not([disabled]) {
+                    &:hover {
+                        box-shadow: inset 0 -24px 0px -20px #59b0ff;
+                    }
+                    &:active {
+                        background: #2d6586;
+                    }
                 }
             }
             a[disabled] {
